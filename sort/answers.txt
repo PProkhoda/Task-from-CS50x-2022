@@ -1,0 +1,11 @@
+sort1 uses: Bubble sort
+
+How do you know?: Minimum time to sort a sorted10000.txt (real    0m0.081s) Omega(n)
+
+sort2 uses: Merge sort
+
+How do you know?: Minimum time to sort a random10000.txt (real    0m0.082s) O(nlogn)
+
+sort3 uses: Selection sort
+
+How do you know?: maximum time to sort sorted10000.txt (real    0m0.209s) O(n2)
