@@ -39,6 +39,7 @@ h1 {
 
 button, input[type="submit"] {
     background-color: #d9edff;
+    margin: 0 auto;
     border: 1px solid transparent;
     border-radius: 0.25rem;
     font-size: 0.95rem;
