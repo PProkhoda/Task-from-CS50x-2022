@@ -12,7 +12,7 @@
                 for (let i = 0; i < incorrects.length; i++) {
                     incorrects[i].addEventListener('click', function() {
                         incorrects[i].style.backgroundColor = 'red';
-                        document.querySelector('#feed1').innerHTML = 'Incorrect';
+                        document.querySelector('#feed1').innerHTML = 'Incorrectcd';
                     });
                 }
 
@@ -47,10 +47,10 @@
                 <!-- TODO: Add multiple choice question here -->
                 <h3>2 + 2 = ?</h3>
             
-                <button class="incorrect">One</button>
-                <button class="incorrect">Two</button>
-                <button class="incorrect">Sheep</button>
-                <button class="correct">four</button>   
+                <button class="incorrect" type="submit">One</button>
+                <button class="incorrect" type="submit">Two</button>
+                <button class="incorrect" type="submit">Sheep</button>
+                <button class="correct" type="submit">four</button>   
                 
                 <p id="feed1"></p>
              
