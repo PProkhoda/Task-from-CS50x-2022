@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+    <div class="mb-3">
+        <p>A share off {{ dict["name"] }} ({{ dict["symbol"] }}) costs {{ dict["price"] | usd}} </p>
+    </div>
+
+
+{% endblock %}
