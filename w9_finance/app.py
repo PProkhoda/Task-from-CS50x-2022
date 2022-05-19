@@ -163,7 +163,7 @@ def buy():
         return render_template("buy.html")
 
 
-@app.route("/history")
+@app.route("/hist")
 @login_required
 def history():
     """Show history of transactions"""
@@ -355,3 +355,47 @@ def sell():
             "SELECT symbol, name, SUM(shares) AS shares FROM history WHERE hist_id = ? GROUP BY symbol", session["user_id"])
         return render_template("sell.html", hist_info=hist_info)
 
+
+@app.route("/add", methods=["GET", "POST"])
+@login_required
+def add():
+    """Add cash"""
+    if request.method == "POST":
+
+        # Ensure add was submitted
+        if not request.form.get("cashadd"):
+            return apology("must provide Add", 400)
+
+        # Ensure Shares is INTEGER
+        cashadd = request.form.get("cashadd")
+        if not cashadd.isdigit():
+            return apology("invalid add", 400)
+
+        # Ensure Shares > 0
+        if int(cashadd) < 0:
+            return apology("invalid add2", 400)
+
+        user_info = db.execute("SELECT * FROM users WHERE id = ?", session["user_id"])
+        last_cash = user_info[0]["cash"]
+
+        # datetime
+        now = datetime.now()
+        date_now = now.strftime("%Y-%m-%d %H.%M.%S")
+
+        # Add row to history for this purchase
+        db.execute("INSERT INTO cashadd (cash_id, cashadd, transacted) VALUES(?, ?, ?)",
+                   session["user_id"], cashadd, date_now)
+
+        # reload cash in users
+        new_cash = last_cash + int(cashadd)
+        db.execute("UPDATE users SET cash = ? WHERE id = ?", new_cash, session["user_id"])
+
+        # return flash
+        flash("Cash has been deposited!")
+
+        # Redirect user to home page
+        return redirect("/")
+
+    # User reached route via GET
+    else:
+        return render_template("add.html")
